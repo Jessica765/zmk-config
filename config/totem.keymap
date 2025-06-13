@@ -59,20 +59,40 @@
         Base {
             label = "Base";
             bindings = <
-              &kp Q       &kp W       &kp E          &kp R         &kp T             &kp Y      &kp U        &kp I        &kp O       &kp P
-              &hm LGUI A  &hm LALT S  &hm LCTRL D    &hm LSHIFT F  &kp G             &kp H      &hm RSHFT J  &hm RCTRL K  &hm RALT L  &hm RGUI SEMICOLON
-&lt 2 ESCAPE  &kp Z       &kp X       &kp C          &kp V         &kp B             &kp N      &kp M        &kp COMMA    &kp DOT     &kp SLASH           &lt 0 APOSTROPHE
-                                      &mt LCTRL DEL  &lt 1 TAB     &kp LEFT_SHIFT    &kp SPACE  &lt 2 BSPC   &kp MINUS
+                 &kp Q       &kp W       &kp E          &kp R         &kp T         &kp Y      &kp U        &kp I        &kp O       &kp P
+                 &hm LGUI A  &hm LALT S  &hm LCTRL D    &hm LSHIFT F  &kp G         &kp H      &hm RSHFT J  &hm RCTRL K  &hm RALT L  &hm RGUI SEMICOLON
+&mt LGUI ESCAPE  &kp Z       &kp X       &kp C          &kp V         &kp B         &kp N      &kp M        &kp COMMA    &kp DOT     &kp SLASH           &lt 4 APOSTROPHE
+                                         &mt LCTRL DEL  &lt 2 TAB     &kp LSHIFT    &kp SPACE  &lt 1 BSPC   &lt 3 ENTER
+            >;
+        };
+
+        Num {
+            label = "Num";
+            bindings = <
+       &kp LC(GRAVE)  &none  &none  &none    &kp LBRC    &kp RBRC   &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp PLUS
+       &kp BSLH       &none  &none  &none    &kp LBKT    &kp RBKT   &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp MINUS
+&none  &none          &none  &none  &none    &kp LPAR    &kp RPAR   &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp KP_MULTIPLY  &none
+                             &none  &kp TAB  &none       &kp SPACE  &trans        &kp NUMBER_0
             >;
         };
 
         Nav {
-            label = "Nav";
             bindings = <
-              &trans          &trans       &kp UP_ARROW  &trans     &kp LBRC    &kp RBRC  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp PLUS
-              &kp LEFT_SHIFT  &kp LEFT     &kp DOWN      &kp RIGHT  &kp LBKT    &kp RBKT  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp MINUS
-&kp LEFT_ALT  &trans          &kp PAGE_UP  &trans        &kp PG_DN  &kp LPAR    &kp RPAR  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp KP_MULTIPLY  &trans
-                                           &trans        &trans     &trans      &trans    &trans        &kp NUMBER_0
+       &kp PG_UP  &kp PSCRN  &kp UP    &caps_word  &kp HOME    &none  &none     &none  &none  &none
+       &kp PG_DN  &kp LEFT   &kp DOWN  &kp RIGHT   &kp END     &none  &none     &none  &none  &none
+&none  &none      &none      &none     &kp INS     &kp DEL     &none  &none     &none  &none  &none  &none
+                             &none     &trans      &none       &none  &kp BSPC  &none
+            >;
+
+            label = "Nav";
+        };
+
+        Media {
+            bindings = <
+       &none  &none  &none  &none  &none    &kp C_VOLUME_UP  &none  &none   &none  &none
+       &none  &none  &none  &none  &none    &none            &none  &none   &none  &none
+&none  &none  &none  &none  &none  &none    &none            &none  &none   &none  &none  &none
+                     &none  &none  &none    &none            &none  &trans
             >;
         };
 
@@ -80,7 +100,7 @@
             label = "Fun";
             bindings = <
         &trans  &kp F7  &kp F8  &kp F9  &trans    &trans  &trans  &trans  &trans  &kp F1
-        &trans  &kp F4  &kp F5  &kp F6  &to 3     &trans  &trans  &trans  &trans  &kp F10
+        &trans  &kp F4  &kp F5  &kp F6  &to 5     &trans  &trans  &trans  &trans  &kp F10
 &trans  &trans  &kp F1  &kp F2  &kp F3  &trans    &trans  &trans  &trans  &trans  &kp F20  &trans
                         &trans  &trans  &trans    &trans  &trans  &trans
             >;
@@ -89,7 +109,7 @@
         Gaming {
             bindings = <
             &trans  &trans  &trans     &trans        &trans    &trans  &trans  &trans  &trans  &trans
-            &kp A   &kp S   &kp D      &kp F         &mo 4     &trans  &trans  &trans  &trans  &trans
+            &kp A   &kp S   &kp D      &kp F         &mo 6     &trans  &trans  &trans  &trans  &trans
 &kp ESCAPE  &trans  &trans  &trans     &trans        &trans    &trans  &trans  &trans  &trans  &trans  &trans
                             &kp LCTRL  &kp LEFT_ALT  &trans    &trans  &trans  &trans
             >;
