@@ -66,10 +66,10 @@
         Num {
             label = "Num";
             bindings = <
-       &kp LC(GRAVE)  &kp AMPS  &kp ASTRK    &kp UNDER  &kp LBRC    &kp RBRC   &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp PLUS
-       &kp BSLH       &kp DLLR  &kp PERCENT  &kp CARET  &kp LBKT    &kp RBKT   &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp MINUS
-&none  &none          &kp EXCL  &kp AT       &kp HASH   &kp LPAR    &kp RPAR   &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp EQUAL  &none
-                                &none        &kp TAB    &trans      &kp SPACE  &trans        &kp NUMBER_0
+       &kp GRAVE  &kp AMPS  &kp ASTRK    &kp UNDER  &kp LBRC    &kp RBRC   &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp PLUS
+       &kp BSLH   &kp DLLR  &kp PERCENT  &kp CARET  &kp LBKT    &kp RBKT   &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp MINUS
+&none  &none      &kp EXCL  &kp AT       &kp HASH   &kp LPAR    &kp RPAR   &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp EQUAL  &none
+                            &none        &kp TAB    &trans      &kp SPACE  &trans        &kp NUMBER_0
             >;
         };
 
@@ -116,10 +116,10 @@
 
         Gaming+ {
             bindings = <
-         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5    &trans  &trans  &trans  &trans  &kp LC(LA(DEL))
-         &kp L         &kp O         &kp Y         &kp K         &kp G           &kp F5  &trans  &trans  &trans  &trans
-&kp TAB  &to 0         &trans        &trans        &kp NUMBER_6  &kp NUMBER_7    &trans  &trans  &trans  &trans  &trans           &kp LA(F4)
-                                     &kp J         &kp I         &kp M           &trans  &trans  &trans
+       &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5    &trans  &trans  &trans  &trans  &kp LC(LA(DEL))
+       &kp L         &kp O         &kp Y         &kp K         &trans          &kp F5  &trans  &trans  &trans  &trans
+&to 0  &to 0         &kp J         &kp I         &kp NUMBER_6  &kp NUMBER_7    &trans  &trans  &trans  &trans  &trans           &kp LA(F4)
+                                   &kp G         &kp TAB       &kp M           &trans  &trans  &trans
             >;
 
             label = "Gaming+";
