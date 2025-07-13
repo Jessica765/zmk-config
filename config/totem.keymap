@@ -14,12 +14,13 @@
 #include <dt-bindings/zmk/keys.h>
 
 #define Base        0
-#define Num       	1
-#define Nav         2
-#define Media       3
-#define Fun         4
-#define Game        5
-#define Gameplus    6
+#define Graphite    1
+#define Num       2
+#define Nav         3
+#define Media       4
+#define Fun         5
+#define Game        6
+#define Gameplus    7
 
 &mt {
     quick-tap-ms = <125>;
