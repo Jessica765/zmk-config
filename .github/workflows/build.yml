@@ -30,7 +30,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: ZMK Firmware Release ${{ github.ref_name }}
           tag_name: ${{ github.ref_name }}
-          files: firmware.zip    # Update this if the actual zip file name/path is different
+          files: "*.uf2"          
           draft: false
           prerelease: false
           fail_on_unmatched_files: false
