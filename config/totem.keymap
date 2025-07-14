@@ -13,127 +13,142 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
-#define Base        0
-#define Graphite    1
-#define Num       2
-#define Nav         3
-#define Media       4
-#define Fun         5
-#define Game        6
-#define Gameplus    7
+#include "zmk-helpers/helper.h"
+// Source desired key-position labels
+#include "zmk-helpers/key-labels/totem.h"
+
+#define BASE        0
+#define GRAPHITE    1
+#define NUM       2
+#define NAV         3
+#define MEDIA       4
+#define FUN         5
+#define GAME        6
+#define GAMEPLUS    7
+
+#define XXX &none
+#define ___ &trans
+
+#define QUICK_TAP_MS 125
+#define TAPPING_TERM_MS 285
 
 &mt {
-    quick-tap-ms = <125>;
+    quick-tap-ms = <QUICK_TAP_MS>;
     global-quick-tap;
     flavor = "tap-preferred";
-    tapping-term-ms = <285>;
+    tapping-term-ms = <TAPPING_TERM_MS>;
 };
 
 &lt {
-    tapping-term-ms = <285>;
+    tapping-term-ms = <TAPPING_TERM_MS>;
     flavor = "tap-preferred";
-    quick-tap-ms = <125>;
+    quick-tap-ms = <QUICK_TAP_MS>;
 };
 
-/ {
-    behaviors {
-        hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <285>;
-            quick-tap-ms = <125>;
-            global-quick-tap;
-            bindings = <&kp>, <&kp>;
-        };
-    };
-
-    combos { compatible = "zmk,combos"; };
-
-    keymap {
-        compatible = "zmk,keymap";
-
-        Base {
-            label = "Base";
-            bindings = <
-        &kp Q       &kp W       &kp E          &kp R         &kp T         &kp Y      &kp U        &kp I        &kp O       &kp P
-        &hm LGUI A  &hm LALT S  &hm LCTRL D    &hm LSHIFT F  &kp G         &kp H      &hm RSHFT J  &hm RCTRL K  &hm RALT L  &hm RGUI SEMICOLON
-&gresc  &kp Z       &kp X       &kp C          &kp V         &kp B         &kp N      &kp M        &kp COMMA    &kp DOT     &kp SLASH           &lt 5 APOSTROPHE
-                                &mt LCTRL DEL  &lt 3 TAB     &kp LSHIFT    &kp SPACE  &lt 2 BSPC   &lt 4 ENTER
-            >;
-        };
-
-        Graphite {
-            label = "Alt";
-            bindings = <
-        &kp B           &kp L       &kp D          &kp W         &kp Z         &kp APOS   &kp F         &kp O        &kp U       &kp J
-        &hm LEFT_GUI N  &hm LALT R  &hm LCTRL T    &hm LSHIFT S  &kp G         &kp Y      &hm LSHIFT H  &hm LCTRL A  &hm LALT E  &hm LEFT_GUI I
-&gresc  &kp Q           &kp X       &kp M          &kp C         &kp V         &kp K      &kp P         &kp DOT      &kp SEMI    &kp SLASH       &lt 5 COMMA
-                                    &mt LCTRL DEL  &lt 3 TAB     &kp LSHIFT    &kp SPACE  &lt 2 BSPC    &lt 4 ENTER
-            >;
-        };
-
-        Num {
-            label = "Num";
-            bindings = <
-       &kp GRAVE  &kp AMPS  &kp ASTRK    &kp UNDER  &kp LBRC    &kp RBRC   &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp PLUS
-       &kp BSLH   &kp DLLR  &kp PERCENT  &kp CARET  &kp LBKT    &kp RBKT   &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp MINUS
-&none  &none      &kp EXCL  &kp AT       &kp HASH   &kp LPAR    &kp RPAR   &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp EQUAL  &none
-                            &none        &kp TAB    &trans      &kp SPACE  &trans        &kp NUMBER_0
-            >;
-        };
-
-        Nav {
-            bindings = <
-       &kp PG_UP  &kp PSCRN        &kp UP    &caps_word  &kp HOME    &kp INS  &none     &none  &none  &none
-       &kp PG_DN  &kp LEFT         &kp DOWN  &kp RIGHT   &kp END     &kp DEL  &none     &none  &none  &none
-&none  &none      &kp LC(LA(DEL))  &none     &none       &none       &none    &none     &none  &none  &none  &none
-                                   &none     &trans      &none       &none    &kp BSPC  &none
-            >;
-
-            label = "Nav";
-        };
-
-        Media {
-            bindings = <
-       &none  &none  &none  &none  &none    &kp C_VOL_UP  &kp C_PREV  &kp C_PP  &kp C_NEXT  &none
-       &none  &none  &none  &none  &none    &kp C_VOL_DN  &kp C_RW    &none     &kp C_FF    &none
-&none  &none  &none  &none  &none  &none    &kp C_MUTE    &none       &none     &none       &none  &none
-                     &none  &none  &none    &none         &none       &trans
-            >;
-        };
-
-        Fun {
-            label = "Fun";
-            bindings = <
-                &none  &kp F7  &kp F8  &kp F9  &to 1    &none  &none  &none  &none  &kp F1
-                &none  &kp F4  &kp F5  &kp F6  &to 6    &none  &none  &none  &none  &kp F10
-&studio_unlock  &none  &kp F1  &kp F2  &kp F3  &none    &none  &none  &none  &none  &kp F20  &trans
-                               &none   &none   &none    &none  &none  &none
-            >;
-        };
-
-        Gaming {
-            bindings = <
-           &trans  &trans  &trans   &trans      &trans       &trans  &trans  &trans  &trans  &trans
-           &kp A   &kp S   &kp D    &kp F       &mo 7        &trans  &trans  &trans  &trans  &trans
-&kp LCTRL  &trans  &trans  &trans   &trans      &trans       &trans  &trans  &trans  &trans  &trans  &trans
-                           &kp ESC  &kp LSHIFT  &kp SPACE    &trans  &trans  &trans
-            >;
-
-            label = "Gaming";
-        };
-
-        Gaming+ {
-            bindings = <
-       &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5    &trans  &trans  &trans  &trans  &kp LC(LA(DEL))
-       &kp L         &kp O         &kp Y         &kp K         &trans          &kp F5  &trans  &trans  &trans  &trans
-&to 0  &to 0         &kp J         &kp I         &kp NUMBER_6  &kp NUMBER_7    &trans  &trans  &trans  &trans  &trans           &kp LA(F4)
-                                   &kp G         &kp TAB       &kp M           &trans  &trans  &trans
-            >;
-
-            label = "Gaming+";
-        };
-    };
+&caps_word {
+  continue-list = <UNDERSCORE MINUS BSPC DEL>;
 };
+
+&sl { // Allow sticky mods to chord across sticky layers.
+  ignore-modifiers;
+};
+
+// Homerow Mods
+
+// Left-hand keys
+#define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4 LB5
+// Right-hand keys
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4 RB5
+// Thumb keys
+#define THUMBS LH2 LH1 LH0 RH0 RH1 RH2
+
+#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)
+  ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";
+              tapping-term-ms = <280>; quick-tap-ms = <QUICK_TAP_MS>;
+              require-prior-idle-ms = <150>; hold-trigger-on-release;
+              hold-trigger-key-positions = <TRIGGER_POS>;)
+
+// Left-hand HRMs
+MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)
+// Right-hand HRMs
+MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)
+
+// Combos
+// Must be sourced after HRM-combo
+#include "combos.dtsi"
+
+// Custom behaviours
+
+// Define mod-morph with a *single* mod trigger for less repetition.
+#define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2)
+  ZMK_MOD_MORPH(NAME, mods = <(MOD_L##MOD | MOD_R##MOD)>;
+                bindings = <BINDING1>, <BINDING2>;)
+
+// Tap: space | Shift + tap: dot -> space -> sticky shift | Hold: nav layer.
+// ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&spc_morph>; flavor = "balanced";
+//              tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
+SIMPLE_MORPH(spc_morph, SFT, &kp SPACE, &dot_spc)
+ZMK_MACRO(dot_spc, bindings = <&kp DOT &kp SPACE &sk LSHFT>; wait-ms = <0>;
+          tap-ms = <5>;)
+
+// Keymap
+#ifndef ZMK_BASE_LAYER
+  #define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                 \
+      ZMK_LAYER(name, LT RT LM RM LB RB LH RH)
+#endif
+
+ZMK_BASE_LAYER(Base,
+					&kp Q					&kp W					&kp E						&kp R						&kp T					,		&kp Y					&kp U							&kp I						&kp O					&kp P																			,
+					&hml LGUI A		&hml LALT S		&hml LSHIFT D		&hml LCTRL F		&kp G					,		&kp H					&hmr LCTRL J			&hmr LSHIFT K		&hmr RALT L		&hmr RGUI SEMICOLON												,
+&gresc		&kp Z					&kp X					&kp C						&kp V						&kp B					,		&kp N					&kp M							&kp COMMA				&kp DOT				&kp SLASH							&lt 5 APOSTROPHE		,
+																			&mt LCTRL DEL		&lt 3 TAB				&kp LSHIFT		,		&spc_morph		&lt 2 BSPC		&lt 4 ENTER
+)
+
+ZMK_BASE_LAYER(Graphite,
+					&kp B					&kp L					&kp D						&kp W						&kp Z					,		&kp APOS			&kp F							&kp O						&kp U					&kp J												,
+					&hm LGUI N		&hm LALT R		&hm LSHIFT T		&hm LCTRL S			&kp G					,		&kp Y					&hmr LCTRL H			&hmr LSHIFT A		&hmr LALT E		&hmr LEFT_GUI I							,
+&gresc		&kp Q					&kp X					&kp M						&kp C						&kp V					,		&kp K					&kp P							&kp DOT					&kp SEMI			&kp SLASH		&lt 5 COMMA			,
+																			&mt LCTRL DEL		&lt 3 TAB				&kp LSHIFT		,		&spc_morph		&lt 2 BSPC		&lt 4 ENTER
+)
+
+ZMK_BASE_LAYER(Num,
+			&kp GRAVE		&kp AMPS		&kp ASTRK			&kp UNDER		&kp LBRC		,		&kp RBRC		&kp NUMBER_7		&kp NUMBER_8		&kp NUMBER_9		&kp PLUS					,
+			&kp BSLH		&kp DLLR		&kp PERCENT		&kp CARET		&kp LBKT		,		&kp RBKT		&kp NUMBER_4		&kp NUMBER_5		&kp NUMBER_6		&kp MINUS					,
+XXX		XXX					&kp EXCL		&kp AT				&kp HASH		&kp LPAR		,		&kp RPAR		&kp NUMBER_1		&kp NUMBER_2		&kp NUMBER_3		&kp EQUAL		XXX		,
+															XXX						&kp TAB			___					,		&kp SPACE		XXX							&kp NUMBER_0
+)
+
+ZMK_BASE_LAYER(Nav,
+			&kp PG_UP		&kp PSCRN					&kp UP			&caps_word		&kp HOME		,		&kp INS			XXX					XXX					XXX					XXX					,
+			&kp PG_DN		&kp LEFT					&kp DOWN		&kp RIGHT			&kp END			,		&kp DEL			XXX					XXX					XXX					XXX					,
+XXX		XXX					&kp LC(LA(DEL))		XXX					XXX						XXX					,		XXX					XXX					XXX					XXX					XXX					,
+																		XXX					___						XXX					,		XXX					&kp BSPC		XXX
+)
+
+ZMK_BASE_LAYER(Media,
+			XXX		XXX		XXX		XXX		XXX		,		&kp C_VOL_UP		&kp C_PREV		&kp C_PP		&kp C_NEXT		XXX					,
+			XXX		XXX		XXX		XXX		XXX		,		&kp C_VOL_DN		&kp C_RW			XXX					&kp C_FF			XXX					,
+XXX		XXX		XXX		XXX		XXX		XXX		,		&kp C_MUTE			XXX						XXX					XXX						XXX		XXX		,
+									XXX		XXX		___		,		XXX							XXX						XXX
+)
+
+ZMK_BASE_LAYER(Fun,
+									XXX		&kp F7		&kp F8		&kp F9		&to 1		,		XXX		XXX		XXX		XXX		&kp F1					,
+									XXX		&kp F4		&kp F5		&kp F6		&to 6		,		XXX		XXX		XXX		XXX		&kp F10					,
+&studio_unlock		XXX		&kp F1		&kp F2		&kp F3		&to 0		,		XXX		XXX		XXX		XXX		&kp F20		___		,
+																	XXX				XXX				XXX			,		XXX		XXX		XXX
+)
+
+ZMK_BASE_LAYER(Gaming,
+						&kp Q		&kp W		&kp E			&kp R					&kp T				,		&kp Y		&kp U		&kp I				&kp O			&kp P															,
+						&kp A		&kp S		&kp D			&kp F					&mo 7				,		&kp H		&kp J		&kp K				&kp L			&kp SEMICOLON											,
+&kp LCTRL		&kp Z		&kp X		&kp C			&kp V					&kp B				,		&kp N		&kp M		&kp COMMA		&kp DOT		&kp SLASH				&kp APOSTROPHE		,
+														&kp ESC		&kp LSHIFT		&kp SPACE		,		___			___			___
+)
+
+ZMK_BASE_LAYER(GamingPlus,
+				&kp NUMBER_1		&kp NUMBER_2		&kp NUMBER_3		&kp NUMBER_4		&kp NUMBER_5		,		___				___		___		___		&kp LC(LA(DEL))									,
+				&kp L						&kp O						&kp Y						&kp K						___							,		&kp F5		___		___		___		___															,
+&to 0		&kp F1					&kp J						&kp I						&kp NUMBER_6		&kp NUMBER_7		,		___				___		___		___		___								&kp LA(F4)		,
+																				&kp G						&kp TAB					&kp M						,		___				___		___
+)
