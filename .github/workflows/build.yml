@@ -1,6 +1,6 @@
 name: Build & Release ZMK Firmware
 
-on: [push, pull_request, workflow_dispatch]
+on: [workflow_dispatch]
 
 permissions:
   contents: write
