@@ -62,11 +62,11 @@
 // Thumb keys
 #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2
 
-#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)
-  ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";
-              tapping-term-ms = <280>; quick-tap-ms = <QUICK_TAP_MS>;
-              require-prior-idle-ms = <150>; hold-trigger-on-release;
-              hold-trigger-key-positions = <TRIGGER_POS>;)
+#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                 \
+  ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
+               tapping-term-ms = <280>; quick-tap-ms = <QUICK_TAP_MS>;         \
+               require-prior-idle-ms = <150>; hold-trigger-on-release;         \
+               hold-trigger-key-positions = <TRIGGER_POS>;)
 
 // Left-hand HRMs
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)
@@ -80,12 +80,12 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)
 // Custom behaviours
 
 // Define mod-morph with a *single* mod trigger for less repetition.
-#define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2)
-  ZMK_MOD_MORPH(NAME, mods = <(MOD_L##MOD | MOD_R##MOD)>;
+#define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2)                            \
+  ZMK_MOD_MORPH(NAME, mods = <(MOD_L##MOD | MOD_R##MOD)>;                      \
                 bindings = <BINDING1>, <BINDING2>;)
 
 // Tap: space | Shift + tap: dot -> space -> sticky shift | Hold: nav layer.
-// ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&spc_morph>; flavor = "balanced";
+// ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&spc_morph>; flavor = "balanced";	\
 //              tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
 SIMPLE_MORPH(spc_morph, SFT, &kp SPACE, &dot_spc)
 ZMK_MACRO(dot_spc, bindings = <&kp DOT &kp SPACE &sk LSHFT>; wait-ms = <0>;
