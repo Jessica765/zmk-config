@@ -32,6 +32,7 @@
 #define FLAVOUR_BALANCED "balanced"
 #define TIMEOUT_MS 30
 #define BASE_LAYER_COMBOS 0 1 2
+#define TAP_DANCE_TAPPING_TERM_MS 50
 
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4 LB5 // Left-hand keys
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4 RB5 // Right-hand keys
@@ -89,7 +90,7 @@
 				td_nw: tap_dance_num_word {
 						compatible = TAP_DANCE_BEHAVIOR;
 						#binding-cells = <0>;
-						tapping-term-ms = <TAPPING_TERM_MS>;
+						tapping-term-ms = <TAP_DANCE_TAPPING_TERM_MS>;
 						bindings = <&lt NUM ENTER>, <&num_word NUM>;
 				};
     };
