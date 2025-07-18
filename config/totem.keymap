@@ -74,7 +74,7 @@
             flavor = FLAVOUR_BALANCED;
             quick-tap-ms = <QUICK_TAP_MS>;
             tapping-term-ms = <TAPPING_TERM_MS>;
-            require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
+            require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;https://www.youtube.com/
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <KEYS_L THUMBS>; // List of keys on the left side of the keyboard
             hold-trigger-on-release;
@@ -217,7 +217,7 @@
             bindings = <
        		&kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5    &trans  &trans  &trans  &trans  &kp LC(LA(DEL))
        		&kp L         &kp O         &kp Y         &kp K         &trans          &kp F5  &trans  &trans  &trans  &trans
-&to BASE	&kp trans     &kp J         &kp I         &kp NUMBER_6  &kp NUMBER_7    &trans  &trans  &trans  &trans  &trans           &kp LA(F4)
+&to BASE	&trans     		&kp J         &kp I         &kp NUMBER_6  &kp NUMBER_7    &trans  &trans  &trans  &trans  &trans           &kp LA(F4)
                                    		&kp G         &kp TAB       &kp M           &trans  &trans  &trans
             >;
 
