@@ -90,7 +90,7 @@
 				td_nw: tap_dance_num_word {
 						compatible = TAP_DANCE_BEHAVIOR;
 						#binding-cells = <0>;
-						tapping-term-ms = <TAP_DANCE_TAPPING_TERM_MS>;
+						tapping-term-ms = <QUICK_TAP_MS>;
 						bindings = <&lt NUM ENTER>, <&num_word NUM>;
 				};
     };
@@ -145,6 +145,12 @@
 				bindings = <&kp LC(A)>;
 				layers = <BASE_LAYER_COMBOS>;
 			};
+			combo_save {
+				timeout-ms = <TIMEOUT_MS>;
+				key-positions = <21 22 23>; // Z, X and C on QWERTY
+				bindings = <&kp LC(S)>;
+				layers = <BASE_LAYER_COMBOS>;
+			}
 		};
 
     keymap {
