@@ -53,10 +53,47 @@
 		quick-tap-ms = <QUICK_TAP_MS>;
 		flavor = <FLAVOUR_BALANCED>;
     tapping-term-ms = <TAPPING_TERM_MS>;
-};
+}; 
 
 / {
-    combos { 
+    behaviors {
+        hml: home_row_mod_left {
+            compatible = <HOLD_TAP_BEHAVIOR>;
+            #binding-cells = <2>;
+            flavor = <FLAVOUR_BALANCED>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            tapping-term-ms = <TAPPING_TERM_MS>;
+            require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_R THUMBS>; // List of keys on the right side of the keyboard
+            hold-trigger-on-release;
+        };
+        hmr: home_row_mod_right {
+            compatible = <HOLD_TAP_BEHAVIOR>;
+            #binding-cells = <2>;
+            flavor = <FLAVOUR_BALANCED>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            tapping-term-ms = <TAPPING_TERM_MS>;
+            require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_L THUMBS>; // List of keys on the left side of the keyboard
+            hold-trigger-on-release;
+        };
+				bd: backspace_delete {
+						compatible = <MOD_MORPH_BEHAVIOR>;
+						#binding-cells = <0>;
+						bindings = <&kp>, <&kp>;
+						mods = <MOD_LSFT>;
+				};
+				td_nw: tap_dance_num_word {
+						compatible = <TAP_DANCE_BEHAVIOR>;
+						#binding-cells = <0>;
+						tapping-term-ms = <TAPPING_TERM_MS>;
+						bindings = <&lt NUM ENTER>, <&num_word NUM>;
+				};
+    };
+
+		combos { 
 			compatible = <COMBO_BEHAVIOUR>; 
 			combo_cut {
 				timeout-ms = <TIMEOUT_MS>;
@@ -98,45 +135,7 @@
 				key-positions = <21 23>; // Z and C on QWERTY
 				bindings = <&kp LC(A)>;
 			};
-	};
-
-/ {
-    behaviors {
-        hml: home_row_mod_left {
-            compatible = <HOLD_TAP_BEHAVIOR>;
-            #binding-cells = <2>;
-            flavor = <FLAVOUR_BALANCED>;
-            quick-tap-ms = <QUICK_TAP_MS>;
-            tapping-term-ms = <TAPPING_TERM_MS>;
-            require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
-            bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = <KEYS_R THUMBS>; // List of keys on the right side of the keyboard
-            hold-trigger-on-release;
-        };
-        hmr: home_row_mod_right {
-            compatible = <HOLD_TAP_BEHAVIOR>;
-            #binding-cells = <2>;
-            flavor = <FLAVOUR_BALANCED>;
-            quick-tap-ms = <QUICK_TAP_MS>;
-            tapping-term-ms = <TAPPING_TERM_MS>;
-            require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
-            bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = <KEYS_L THUMBS>; // List of keys on the left side of the keyboard
-            hold-trigger-on-release;
-        };
-				bd: backspace_delete {
-						compatible = <MOD_MORPH_BEHAVIOR>;
-						#binding-cells = <0>;
-						bindings = <&kp>, <&kp>;
-						mods = <MOD_LSFT>;
-				};
-				td_nw: tap_dance_num_word {
-						compatible = <TAP_DANCE_BEHAVIOR>;
-						#binding-cells = <0>;
-						tapping-term-ms = <TAPPING_TERM_MS>;
-						bindings = <&lt NUM ENTER>, <&num_word NUM>;
-				};
-    };
+		};
 
     keymap {
         compatible = "zmk,keymap";
