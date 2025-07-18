@@ -82,7 +82,7 @@
 				bd: backspace_delete {
 						compatible = MOD_MORPH_BEHAVIOR;
 						#binding-cells = <0>;
-						bindings = <&kp>, <&kp>;
+						bindings = <&kp BSPC>, <&kp DEL>;
 						mods = <MOD_LSFT>;
 				};
 				td_nw: tap_dance_num_word {
