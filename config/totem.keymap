@@ -45,22 +45,22 @@
 &mt {
     quick-tap-ms = <QUICK_TAP_MS>;
     global-quick-tap;
-    flavor = <FLAVOUR_BALANCED>;
+    flavor = FLAVOUR_BALANCED;
     tapping-term-ms = <TAPPING_TERM_MS>;
 };
 
 &lt {
 		quick-tap-ms = <QUICK_TAP_MS>;
-		flavor = <FLAVOUR_BALANCED>;
+		flavor = FLAVOUR_BALANCED;
     tapping-term-ms = <TAPPING_TERM_MS>;
 }; 
 
 / {
     behaviors {
         hml: home_row_mod_left {
-            compatible = <HOLD_TAP_BEHAVIOR>;
+            compatible = HOLD_TAP_BEHAVIOR;
             #binding-cells = <2>;
-            flavor = <FLAVOUR_BALANCED>;
+            flavor = FLAVOUR_BALANCED;
             quick-tap-ms = <QUICK_TAP_MS>;
             tapping-term-ms = <TAPPING_TERM_MS>;
             require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
@@ -69,9 +69,9 @@
             hold-trigger-on-release;
         };
         hmr: home_row_mod_right {
-            compatible = <HOLD_TAP_BEHAVIOR>;
+            compatible = HOLD_TAP_BEHAVIOR;
             #binding-cells = <2>;
-            flavor = <FLAVOUR_BALANCED>;
+            flavor = FLAVOUR_BALANCED;
             quick-tap-ms = <QUICK_TAP_MS>;
             tapping-term-ms = <TAPPING_TERM_MS>;
             require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
@@ -80,13 +80,13 @@
             hold-trigger-on-release;
         };
 				bd: backspace_delete {
-						compatible = <MOD_MORPH_BEHAVIOR>;
+						compatible = MOD_MORPH_BEHAVIOR;
 						#binding-cells = <0>;
 						bindings = <&kp>, <&kp>;
 						mods = <MOD_LSFT>;
 				};
 				td_nw: tap_dance_num_word {
-						compatible = <TAP_DANCE_BEHAVIOR>;
+						compatible = TAP_DANCE_BEHAVIOR;
 						#binding-cells = <0>;
 						tapping-term-ms = <TAPPING_TERM_MS>;
 						bindings = <&lt NUM ENTER>, <&num_word NUM>;
@@ -94,7 +94,7 @@
     };
 
 		combos { 
-			compatible = <COMBO_BEHAVIOUR>; 
+			compatible = COMBO_BEHAVIOUR; 
 			combo_cut {
 				timeout-ms = <TIMEOUT_MS>;
 				key-positions = <22 24>; // X and V on QWERTY
