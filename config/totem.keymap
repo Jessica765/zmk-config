@@ -165,7 +165,7 @@
             bindings = <
         &kp B           &kp L       &kp D         &kp W         &kp Z         &kp APOS	&kp F         &kp O        	&kp U       &kp J
         &hml LEFT_GUI N	&hml LALT R	&hml LCTRL T	&hml LSHIFT S	&kp G         &kp Y     &hmr LSHIFT H	&hmr LCTRL A	&hmr LALT E	&hmr LEFT_GUI I
-&gresc  &kp Q           &kp X       &kp M         &kp C         &kp V         &kp K     &kp P         &kp DOT      	&kp SEMI    &kp SLASH       &lt FUN COMMA
+&gresc  &kp Q           &kp X       &kp M         &kp C         &kp V         &kp K     &kp P         &kp DOT      	&kp SEMI    &kp SLASH       &lt FUNMEDIA COMMA
 																		&kp LCTRL			&lt NAV TAB   &kp LSHIFT    &kp SPACE &bd  			 		&td_nw
 
             >;
