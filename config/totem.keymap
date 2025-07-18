@@ -12,69 +12,167 @@
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include "key-labels/totem.h"
+#include <behaviors/num_word.dtsi>
 
-#define Base        0
-#define Graphite    1
-#define Num       2
-#define Nav         3
-#define Media       4
-#define Fun         5
-#define Game        6
-#define Gameplus    7
+// Layers
+#define BASE        0
+#define STURDY      1
+#define GRAPHITE    2
+#define NUM         3
+#define NAV         4
+#define FUNMEDIA    5
+#define GAME        6
+#define GAMEPLUS    7
+
+// Defaults
+#define QUICK_TAP_MS 125
+#define TAPPING_TERM_MS 285
+#define REQUIRE_PRIOR_IDLE_MS 150
+#define FLAVOUR_BALANCED "balanced"
+#define TIMEOUT_MS 30
+
+#define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4 LB5 // Left-hand keys
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4 RB5 // Right-hand keys
+#define THUMBS LH2 LH1 LH0 RH0 RH1 RH2    // Thumb keys
+
+// Behaviours
+#define HOLD_TAP_BEHAVIOR "zmk,behavior-hold-tap"
+#define COMBO_BEHAVIOUR "zmk,combos"
+#define MOD_MORPH_BEHAVIOR "zmk,behavior-mod-morph"
+#define TAP_DANCE_BEHAVIOR "zmk,behavior-tap-dance"
 
 &mt {
-    quick-tap-ms = <125>;
+    quick-tap-ms = <QUICK_TAP_MS>;
     global-quick-tap;
-    flavor = "tap-preferred";
-    tapping-term-ms = <285>;
+    flavor = <FLAVOUR_BALANCED>;
+    tapping-term-ms = <TAPPING_TERM_MS>;
 };
 
 &lt {
-    tapping-term-ms = <285>;
-    flavor = "tap-preferred";
-    quick-tap-ms = <125>;
+		quick-tap-ms = <QUICK_TAP_MS>;
+		flavor = <FLAVOUR_BALANCED>;
+    tapping-term-ms = <TAPPING_TERM_MS>;
 };
 
 / {
-    behaviors {
-        hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <285>;
-            quick-tap-ms = <125>;
-            global-quick-tap;
-            bindings = <&kp>, <&kp>;
-        };
-    };
+    combos { 
+			compatible = <COMBO_BEHAVIOUR>; 
+			combo_cut {
+				timeout-ms = <TIMEOUT_MS>;
+				key-positions = <22 24>; // X and V on QWERTY
+				bindings = <&kp LC(X)>;
+			};
+			combo_copy {
+				timeout-ms = <TIMEOUT_MS>;
+				key-positions = <22 23>; // X and C on QWERTY
+				bindings = <&kp LC(C)>;
+			};
+			combo_paste {
+				timeout-ms = <TIMEOUT_MS>;
+				key-positions = <23 24>; // C and V on QWERTY
+				bindings = <&kp LC(V)>;
+			};
+			combo_gui_paste {
+				timeout-ms = <TIMEOUT_MS>;
+				key-positions = <22 23 24>; // X, C and V on QWERTY
+				bindings = <&kp LG(V)>;
+			};
+			combo_undo {
+				timeout-ms = <TIMEOUT_MS>;
+				key-positions = <21 22>; // Z and X on QWERTY
+				bindings = <&kp LC(Z)>;
+			};
+			combo_redo {
+				timeout-ms = <TIMEOUT_MS>;
+				key-positions = <24 25>; // V and B on QWERTY
+				bindings = <&kp LC(Y)>;
+			};
+			combo_find {
+				timeout-ms = <TIMEOUT_MS>;
+				key-positions = <21 24>; // Z and V on QWERTY
+				bindings = <&kp LC(F)>;
+			};
+			combo_select_all {
+				timeout-ms = <TIMEOUT_MS>;
+				key-positions = <21 23>; // Z and C on QWERTY
+				bindings = <&kp LC(A)>;
+			};
+	};
 
-    combos { compatible = "zmk,combos"; };
+/ {
+    behaviors {
+        hml: home_row_mod_left {
+            compatible = <HOLD_TAP_BEHAVIOR>;
+            #binding-cells = <2>;
+            flavor = <FLAVOUR_BALANCED>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            tapping-term-ms = <TAPPING_TERM_MS>;
+            require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_R THUMBS>; // List of keys on the right side of the keyboard
+            hold-trigger-on-release;
+        };
+        hmr: home_row_mod_right {
+            compatible = <HOLD_TAP_BEHAVIOR>;
+            #binding-cells = <2>;
+            flavor = <FLAVOUR_BALANCED>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            tapping-term-ms = <TAPPING_TERM_MS>;
+            require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_L THUMBS>; // List of keys on the left side of the keyboard
+            hold-trigger-on-release;
+        };
+				bd: backspace_delete {
+						compatible = <MOD_MORPH_BEHAVIOR>;
+						#binding-cells = <0>;
+						bindings = <&kp>, <&kp>;
+						mods = <MOD_LSFT>;
+				};
+				td_nw: tap_dance_num_word {
+						compatible = <TAP_DANCE_BEHAVIOR>;
+						#binding-cells = <0>;
+						tapping-term-ms = <TAPPING_TERM_MS>;
+						bindings = <&lt NUM ENTER>, <&num_word NUM>;
+				};
+    };
 
     keymap {
         compatible = "zmk,keymap";
 
-        Base {
+        BASE {
             label = "Base";
             bindings = <
-        &kp Q       &kp W       &kp E          &kp R         &kp T         &kp Y      &kp U        &kp I        &kp O       &kp P
-        &hm LGUI A  &hm LALT S  &hm LCTRL D    &hm LSHIFT F  &kp G         &kp H      &hm RSHFT J  &hm RCTRL K  &hm RALT L  &hm RGUI SEMICOLON
-&gresc  &kp Z       &kp X       &kp C          &kp V         &kp B         &kp N      &kp M        &kp COMMA    &kp DOT     &kp SLASH           &lt 5 APOSTROPHE
-                                &mt LCTRL DEL  &lt 3 TAB     &kp LSHIFT    &kp SPACE  &lt 2 BSPC   &lt 4 ENTER
+        &kp Q       &kp W       &kp E         &kp R         &kp T         &kp Y     &kp U        	&kp I        	&kp O       &kp P
+        &hml LGUI A	&hml LALT S	&hml LCTRL D	&hml LSHIFT F	&kp G         &kp H     &hmr RSHFT J	&hmr RCTRL K	&hmr RALT L	&hmr RGUI SEMICOLON
+&gresc  &kp Z       &kp X       &kp C         &kp V         &kp B         &kp N		  &kp M        	&kp COMMA    	&kp DOT     &kp SLASH           &lt FUNMEDIA APOS
+                                &kp LCTRL			&lt NAV TAB   &kp LSHIFT    &kp SPACE &bd  			 		&td_nw
             >;
         };
 
-        Graphite {
-            label = "Alt";
+				STURDY {
+            label = "Sturdy";
             bindings = <
-        &kp B           &kp L       &kp D          &kp W         &kp Z         &kp APOS   &kp F         &kp O        &kp U       &kp J
-        &hm LEFT_GUI N  &hm LALT R  &hm LCTRL T    &hm LSHIFT S  &kp G         &kp Y      &hm LSHIFT H  &hm LCTRL A  &hm LALT E  &hm LEFT_GUI I
-&gresc  &kp Q           &kp X       &kp M          &kp C         &kp V         &kp K      &kp P         &kp DOT      &kp SEMI    &kp SLASH       &lt 5 COMMA
-                                    &mt LCTRL DEL  &lt 3 TAB     &kp LSHIFT    &kp SPACE  &lt 2 BSPC    &lt 4 ENTER
+        &kp V           &kp M       &kp L         &kp C         &kp P         &kp X   	&kp F        	&kp O        	&kp U       &kp J
+        &hml LEFT_GUI S	&hml LALT T	&hml LCTRL R	&hml LSHIFT D	&kp Y         &kp DOT	  &hmr LSHIFT N	&hmr LCTRL A	&hmr LALT E	&hmr LEFT_GUI I
+&gresc  &kp Z           &kp K       &kp Q         &kp G         &kp W         &kp B     &kp H         &kp APOS      &kp SEMI    &kp COMMA       &lt FUNMEDIA SLASH
+                                		&kp LCTRL			&lt NAV TAB   &kp LSHIFT    &kp SPACE &bd  			 		&td_nw
             >;
         };
 
-        Num {
+        GRAPHITE {
+            label = "Graphite";
+            bindings = <
+        &kp B           &kp L       &kp D         &kp W         &kp Z         &kp APOS	&kp F         &kp O        	&kp U       &kp J
+        &hml LEFT_GUI N	&hml LALT R	&hml LCTRL T	&hml LSHIFT S	&kp G         &kp Y     &hmr LSHIFT H	&hmr LCTRL A	&hmr LALT E	&hmr LEFT_GUI I
+&gresc  &kp Q           &kp X       &kp M         &kp C         &kp V         &kp K     &kp P         &kp DOT      	&kp SEMI    &kp SLASH       &lt FUN COMMA
+																		&kp LCTRL			&lt NAV TAB   &kp LSHIFT    &kp SPACE &bd  			 		&td_nw
+
+            >;
+        };
+
+        NUM {
             label = "Num";
             bindings = <
        &kp GRAVE  &kp AMPS  &kp ASTRK    &kp UNDER  &kp LBRC    &kp RBRC   &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp PLUS
@@ -84,9 +182,9 @@
             >;
         };
 
-        Nav {
+        NAV {
             bindings = <
-       &kp PG_UP  &kp PSCRN        &kp UP    &caps_word  &kp HOME    &kp INS  &none     &none  &none  &none
+       &kp PG_UP  &kp PSCRN        &kp UP    &caps_word  &kp HOME    &kp INS  &none     &none  &none  &kp LC(LS(P))
        &kp PG_DN  &kp LEFT         &kp DOWN  &kp RIGHT   &kp END     &kp DEL  &none     &none  &none  &none
 &none  &none      &kp LC(LA(DEL))  &none     &none       &none       &none    &none     &none  &none  &none  &none
                                    &none     &trans      &none       &none    &kp BSPC  &none
@@ -95,26 +193,17 @@
             label = "Nav";
         };
 
-        Media {
-            bindings = <
-       &none  &none  &none  &none  &none    &kp C_VOL_UP  &kp C_PREV  &kp C_PP  &kp C_NEXT  &none
-       &none  &none  &none  &none  &none    &kp C_VOL_DN  &kp C_RW    &none     &kp C_FF    &none
-&none  &none  &none  &none  &none  &none    &kp C_MUTE    &none       &none     &none       &none  &none
-                     &none  &none  &none    &none         &none       &trans
+				FUNMEDIA {
+						label = "Fun_Media";
+						bindings = <
+                &none  &kp F7  &kp F8  &kp F9  &to STURDY     &kp C_VOL_UP  &kp C_PREV  &kp C_PP  &kp C_NEXT  &none
+                &none  &kp F4  &kp F5  &kp F6  &to GAME    		&kp C_VOL_DN  &kp C_RW    &none     &kp C_FF    &none
+&studio_unlock  &none  &kp F1  &kp F2  &kp F3  &to BASE    		&kp C_MUTE    &none       &none     &none       &none	 &trans
+                               &none   &none   &to GRAPHITE		&none  				&none  			&none
             >;
         };
 
-        Fun {
-            label = "Fun";
-            bindings = <
-                &none  &kp F7  &kp F8  &kp F9  &to 1    &none  &none  &none  &none  &kp F1
-                &none  &kp F4  &kp F5  &kp F6  &to 6    &none  &none  &none  &none  &kp F10
-&studio_unlock  &none  &kp F1  &kp F2  &kp F3  &none    &none  &none  &none  &none  &kp F20  &trans
-                               &none   &none   &none    &none  &none  &none
-            >;
-        };
-
-        Gaming {
+        GAME {
             bindings = <
            &trans  &trans  &trans   &trans      &trans       &trans  &trans  &trans  &trans  &trans
            &kp A   &kp S   &kp D    &kp F       &mo 7        &trans  &trans  &trans  &trans  &trans
@@ -122,18 +211,18 @@
                            &kp ESC  &kp LSHIFT  &kp SPACE    &trans  &trans  &trans
             >;
 
-            label = "Gaming";
+            label = "Game";
         };
 
-        Gaming+ {
+        GAMEPLUS {
             bindings = <
-       &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5    &trans  &trans  &trans  &trans  &kp LC(LA(DEL))
-       &kp L         &kp O         &kp Y         &kp K         &trans          &kp F5  &trans  &trans  &trans  &trans
-&to 0  &to 0         &kp J         &kp I         &kp NUMBER_6  &kp NUMBER_7    &trans  &trans  &trans  &trans  &trans           &kp LA(F4)
-                                   &kp G         &kp TAB       &kp M           &trans  &trans  &trans
+       		&kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5    &trans  &trans  &trans  &trans  &kp LC(LA(DEL))
+       		&kp L         &kp O         &kp Y         &kp K         &trans          &kp F5  &trans  &trans  &trans  &trans
+&to BASE	&kp trans     &kp J         &kp I         &kp NUMBER_6  &kp NUMBER_7    &trans  &trans  &trans  &trans  &trans           &kp LA(F4)
+                                   		&kp G         &kp TAB       &kp M           &trans  &trans  &trans
             >;
 
-            label = "Gaming+";
+            label = "GamePlus";
         };
     };
 };
