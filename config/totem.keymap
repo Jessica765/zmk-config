@@ -32,7 +32,7 @@
 #define FLAVOUR_BALANCED "balanced"
 #define TIMEOUT_MS 30
 #define COMBO_LAYERS 0 1 2 3
-#define TAP_DANCE_TAPPING_TERM_MS 200
+#define TAP_DANCE_TAPPING_TERM_MS 180
 
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4 LB5 // Left-hand keys
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4 RB5 // Right-hand keys
@@ -190,10 +190,10 @@
         NUM {
             label = "Num";
             bindings = <
-       &kp GRAVE  &kp AMPS  &kp ASTRK    &kp UNDER  &kp LBRC    &kp RBRC  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp PLUS
-       &kp BSLH   &kp DLLR  &kp PERCENT  &kp CARET  &kp LBKT    &kp RBKT  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp MINUS
-&none  &none      &kp EXCL  &kp AT       &kp HASH   &kp LPAR    &kp RPAR  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp EQUAL  &none
-                            &none        &kp TAB    &trans      &kp SPACE	&kp NUMBER_0	&trans
+       &kp GRAVE  &kp AMPS  &kp ASTRK   &kp UNDER  &kp LBRC    &kp RBRC  	&kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp PLUS
+       &kp BSLH   &kp DLLR  &kp PERCENT	&kp CARET  &kp LBKT    &kp RBKT  	&kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp MINUS
+&none  &none      &kp EXCL  &kp AT      &kp HASH   &kp LPAR    &kp RPAR  	&kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp EQUAL  &none
+                            &bd        	&kp TAB    &trans      &kp SPACE	&kp NUMBER_0	&trans
             >;
         };
 
